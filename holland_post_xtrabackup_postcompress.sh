@@ -36,7 +36,7 @@ cp -a "${0}" "${backupdir}" || exit 1
 ## Verify that this appears to be an uncompressed backup that has already been prepared
 [[ -f "${datadir}"/xtrabackup_logfile &&
    -f "${datadir}"/ib_logfile0 &&
-   -f "${datadir}"/ib_logfile1 ]] ||  { echo "Backup not prepared. Set stream=no and apply-logs=yes in backupset" >&2; exit 1; }
+   -f "${datadir}"/ib_logfile1 ]] ||  { echo "Backup not prepared or holland in dry-run. Set stream=no and apply-logs=yes in backupset" >&2; exit 1; }
 
 ## Create compressed tar of datadir in backupdir
 compression_level_valid=`echo $(((${compression_level}*2)/2))`

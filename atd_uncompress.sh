@@ -19,7 +19,7 @@ backupset=${1}
 backupdir=${2}
 [[ -f /etc/holland/backupsets/"${backupset}".conf ]] || { echo "Bad arugments.  \${backupset} ${backupset} does not exist" >&2; exit 1; }
 [[ -d "${backupdir}" ]] || { echo "Bad arugments.  \${backupdir} ${backupdir} does not exist or is not a directory" >&2; exit 1; }
-uncompressed_dir=$(echo "${uncompressed_dir}" | sed 's^/$^^')
+uncompressed_dir=$(echo "${uncompressed_dir}" | sed 's^/$^^') # find regex used breaks without this
 daily_uncompressed=$(basename "${backupdir}")
 [[ -d "${uncompressed_dir}" ]] || { echo "Bad configuration in after-backup-commmand ${0}: uncompressed_dir set to ${uncompressed_dir} but this path does not exist or is not a directory" >&2; exit 1; }
 

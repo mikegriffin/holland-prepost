@@ -6,7 +6,7 @@ set -euf -o pipefail
 # Configuration options
 #################################
 compressed_file="backup.tar.gz"
-uncompress_cat_command=zcat
+uncompress_cat_command="pigz -dc"
 uncompressed_dir=/uncompressed/
 email_rcpt="root@localhost"
 innobackupex_memory=128M

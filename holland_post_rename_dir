@@ -1,5 +1,13 @@
 #! /bin/bash
 
+# Script assumes that "backups-to-keep = 0" and "purge-policy = before-backup"
+
+# Be sure to "chmod +x holland_post_rename_dir"
+
+# example:
+# after-backup-command="/usr/local/bin/holland_post_rename_dir ${backupdir}"
+
+
 [[ "${#}" -eq 1 && -n "${1}" ]] || { echo "Bad arugments. Expecting Holland to invoke with \${backupdir} as the only argument." >&2; exit 1; }
 
 bkdir=${1}

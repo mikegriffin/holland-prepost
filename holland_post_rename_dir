@@ -1,0 +1,11 @@
+#! /bin/bash
+
+[[ "${#}" -eq 1 && -n "${1}" ]] || { echo "Bad arugments. Expecting Holland to invoke with \${backupdir} as the only argument." >&2; exit 1; }
+
+bkdir=${1}
+nightly=$(echo "${bkdir}" | sed 's/2.*//')
+
+## Backup this script itself
+cp -a "${0}" "${bkdir}" || exit 1
+
+mv ${bkdir} ${nightly}/nightly && echo "Successfully renamed ${bkdir} to ${nightly}/nightly" || { echo "$? failed" >&2; exit 1; }
